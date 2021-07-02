@@ -21,4 +21,4 @@ Within this folder there are 2 project folders, a default truffle example projec
 
 ## About
 
-This repository cotains the programming and technical parts of my personal/self-assigneed research project into cyrptography and cryptocurrenceis.
+This repository contains the programming and technical parts of my personal/self-assigneed research project into cyrptography and cryptocurrenceis.

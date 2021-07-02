@@ -1,5 +1,5 @@
 import java.math.BigInteger;
-import java.security.NoSuchAlgorithmException;
+// import java.security.NoSuchAlgorithmException;
 import crypto.SHA256;
 
 public class Block {
@@ -15,9 +15,9 @@ public class Block {
 
     /**
      * Constructor for the Genisis Block ONLY!!
-     * @throws NoSuchAlgorithmException
+     * @throws Exception
      */
-    private Block() throws NoSuchAlgorithmException {
+    private Block() throws Exception {
         this.header = null;
         // this.hash = GenisisHash;
         this.hash = "A8380A63AD8C6D0783F65BD68D66E4C08564620924570606019997BE610EBBF3";
@@ -27,7 +27,7 @@ public class Block {
     /**
      * Constructor of Block, to be used from blockchain only
      * @param prev the previous block
-     * @throws NoSuchAlgorithmException
+     * @throws Exception
      */
     protected Block(Block prev, String height) throws Exception {
         this.header = new BlockHeader(prev, 0); //! change zero to a nonce value when implementing mining

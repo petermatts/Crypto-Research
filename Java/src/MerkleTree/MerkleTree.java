@@ -20,14 +20,17 @@ public class MerkleTree<T> extends Merkle<T>{
         this.nodes = new ArrayList<MerkleNode>();
     }
 
-    public MerkleTree(List<MerkleNode> nodes) throws NoSuchAlgorithmException, Exception {
+    public MerkleTree(List<MerkleNode> nodes) throws Exception {
+        if(nodes.size() > 64)
+            throw new IllegalArgumentException("List too big");
+
         this.nodes = new ArrayList<MerkleNode>(nodes);
         size = nodes.size();
         calculate();
     }
 
     @Override
-    protected void calculate() throws NoSuchAlgorithmException, Exception {
+    protected void calculate() throws Exception {
         List<String> hashes = new ArrayList<String>();
         for(int i = 0; i < nodes.size(); i++)
             hashes.add(nodes.get(i).hash());
@@ -51,7 +54,7 @@ public class MerkleTree<T> extends Merkle<T>{
     }
 
     @Override
-    public boolean add(MerkleNode node) throws NoSuchAlgorithmException, Exception {
+    public boolean add(MerkleNode node) throws Exception {
         if(isFull())
             return false;
 
