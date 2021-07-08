@@ -9,6 +9,7 @@ import java.util.List;
 
 public class SHA256 {
     /* Manual SHA256 calculation */
+    /* Implemented via the instructions @ https://qvault.io/cryptography/how-sha-2-works-step-by-step-sha-256/ */
 
      /** 
      * The intial has values that the SHA256 cryptographic hashing algorithm uses
@@ -250,7 +251,10 @@ public class SHA256 {
         /* Finalize data alteration for next steps */
 
         //append a 1 at the very end of the last message block
-        String last = messageBlocks.remove(messageBlocks.size()-1);
+        String last = "";
+        if(!messageBlocks.isEmpty())
+            last = messageBlocks.remove(messageBlocks.size()-1);
+
         last += "1";
 
         //pad with trailing zeroes until last is of length divisble by 512, but stop 64 spots shy to insert strBE (which always has length 64)
@@ -436,21 +440,9 @@ public class SHA256 {
         System.out.println(hash("Hello World") + "\t(Result)");
         System.out.println("A591A6D40BF420404A011733CFB7B190D62C65BF0BCDA32B57B277D9AD9F146E\t(Expected)");
 
-        try {
-            String hw_hash = hash("Hello World");
-            // System.out.println(hw_hash.replaceAll("^[A-Fa-f0-9]+$","").isEmpty()); //Expected: true
-            // System.out.println("Hello World: " + hw_hash);
-            // System.out.println("Hello World x2: " + hash("Hello World Hello World"));
-            // System.out.println("Super duper really long input: " + hash("Super duper really long input"));
-
-            System.out.println();
-            System.out.println("Hello World");
-            System.out.println("hash(\"Hello World\") = " + hw_hash);
-            System.out.println("hash(\"" + hw_hash + "\") = " + hash(hw_hash));
-        } catch (NoSuchAlgorithmException e) { 
-            System.out.println("Exception thrown for incorrect algorithm: " + e); 
-        } catch(Exception e) {
-            System.out.println("Some other error:\n" + e);
-        }
+        String testBoth = ""; //adjust this string value to any value to test both methods of calculating the hash
+        System.out.println("\nTest Both:");
+        System.out.println(hashAPI(testBoth));
+        System.out.println(hash(testBoth));
     } 
 }

@@ -2,7 +2,7 @@ package MerkleTree;
 
 import crypto.SHA256;
 
-import java.security.NoSuchAlgorithmException;
+// import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,8 +20,13 @@ public class MerkleTree<T> extends Merkle<T>{
         this.nodes = new ArrayList<MerkleNode>();
     }
 
+    /**
+     * Constructor for merkle tree with initial value
+     * @param nodes list of initial merkle node values
+     * @throws Exception if nodes.size() exceeds MAXSIZE
+     */
     public MerkleTree(List<MerkleNode> nodes) throws Exception {
-        if(nodes.size() > 64)
+        if(nodes.size() > MAXSIZE)
             throw new IllegalArgumentException("List too big");
 
         this.nodes = new ArrayList<MerkleNode>(nodes);

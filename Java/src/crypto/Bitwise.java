@@ -1,125 +1,137 @@
 package crypto;
 
 /**
- * This class was made for me to work around and  test with bitwise operators for the first time :)
+ * https://en.wikipedia.org/wiki/Bitwise_operation
  */
 public class Bitwise {
-    /**
-     * Adds all binary strings entered together module 2^32
-     * @param bin varargs parmeter of binary strings
-     * @return binary String of sum of input
-     */
-    private static String add(String... bin) {
-        final long mod = (long) Math.pow(2, 32);
-        long sum = 0;
+    /**** Instance variables for generalized testing ****/
 
-        for(String b : bin) {
-            Long add = Long.parseLong(b, 2);
-            sum += add;
-            sum %= mod;
-        }
+    static final int i_bin = 2;
+    static final long l_bin = 987654320;
+    static final short s_bin = 5;
+    static final char c_bin = 'M';
+    static final byte b_bin = 7;
+    static final int distance = 1;
 
-        String result = Long.toBinaryString(sum);
-        while(result.length() < 32)
-            result = "0" + result;
+    /**** End variables****/
 
-        return result;
+    /**** Left Shift ****/
+
+    private static int shiftLeft(int bin, int distance) { return bin<<distance; }
+    private static long shiftLeft(long bin, int distance) { return bin<<distance; }
+    private static short shiftLeft(short bin, int distance) { return (short) (bin<<distance); }
+    private static char shiftLeft(char bin, int distance) { return (char) (bin<<distance); }
+    private static byte shiftLeft(byte bin, int distance) { return (byte) (bin<<distance); }
+
+    /**** End Left Shift ****/
+
+
+    /**** Right Shift ****/
+
+    private static int shiftRight(int bin, int distance) { return bin>>distance; }
+    private static long shiftRight(long bin, int distance) { return bin>>distance; }
+    private static short shiftRight(short bin, int distance) { return (short) (bin>>distance); }
+    private static char shiftRight(char bin, int distance) { return (char) (bin>>distance); }
+    private static byte shiftRight(byte bin, int distance) { return (byte) (bin>>distance); }
+
+    /**** End Right Shift ****/
+
+
+    /**** Rotate Left ****/
+
+    private static int rotateLeft(int bin, int distance) { return Integer.rotateLeft(bin, distance); }
+    private static long rotateLeft(long bin, int distance) { return Long.rotateLeft(bin, distance); }
+    private static short rotateLeft(short bin, int distance) { Short s = bin; return (short) Integer.rotateLeft(s.intValue(), distance); }
+    private static char rotateLeft(char bin, int distance) { return (char) Integer.rotateLeft(Character.hashCode(bin), distance); }
+    private static byte rotateLeft(byte bin, int distance) { Byte b = bin; return (byte) Integer.rotateLeft(b.intValue(), distance); }
+
+    /**** End Rotate Left ****/
+
+
+    /**** Rotate Right ****/
+
+    private static int rotateRight(int bin, int distance) { return Integer.rotateRight(bin, distance); }
+    private static long rotateRight(long bin, int distance) { return Long.rotateRight(bin, distance); }
+    private static short rotateRight(short bin, int distance) { Short s = bin; return (short) Integer.rotateRight(s.intValue(), distance); }
+    private static char rotateRight(char bin, int distance) { return (char) Integer.rotateRight(Character.hashCode(bin), distance); }
+    private static byte rotateRight(byte bin, int distance) { Byte b = bin; return (byte) Integer.rotateRight(b.intValue(), distance); }
+
+    /**** End Rotate Right ****/
+
+
+    /**** AND ****/
+    //TODO
+    /**** End AND ****/
+
+
+    /**** OR ****/
+    //TODO
+    /**** END OR ****/
+
+
+    /**** XOR ****/
+    //TODO
+    /**** END XOR ****/
+
+    /**** Compliment ****/
+    //TODO
+    /**** END Compliment ****/
+
+
+    /**** Support eethods for main printing ****/
+
+    public static void printVars() {
+        System.out.println("i_bin = " + i_bin);
+        System.out.println("l_bin = " + l_bin);
+        System.out.println("s_bin = " + s_bin);
+        System.out.println("c_bin = " + c_bin);
+        System.out.println("b_bin = " + b_bin);
+        System.out.println("distance = " + distance);
     }
 
-    private static String shiftLeft(String bin, int distance) {
-        final int len = bin.length();
-        Long num = Long.parseLong(bin, 2);
-        num = num<<distance;
-        String result = Long.toBinaryString(num);
-        while(result.length() < len)
-            result = "0" + result;
-
-        // System.out.println(result.length()); //Should always be 32 for SHA256
-        // System.out.println(num); //base 10 representation
-
-        return result;
+    public static void printLeftShift() {
+        System.out.println("\nLeft Shift");
+        System.out.println(i_bin + " << " + distance + " = " + shiftLeft(i_bin, distance));
+        System.out.println(l_bin + " << " + distance + " = " + shiftLeft(l_bin, distance));
+        System.out.println(s_bin + " << " + distance + " = " + shiftLeft(s_bin, distance));
+        System.out.println(c_bin + " << " + distance + " = " + shiftLeft(c_bin, distance));
+        System.out.println(b_bin + " << " + distance + " = " + shiftLeft(b_bin, distance));
     }
 
-    private static String shiftRight(String bin, int distance) {
-        final int len = bin.length();
-        Long num = Long.parseLong(bin, 2);
-        num = num>>distance;
-        String result = Long.toBinaryString(num);
-        while(result.length() < len)
-            result = "0" + result;
-
-        // System.out.println(result.length()); //Should always be 32 for SHA256
-        // System.out.println(num); //base 10 representation
-
-        return result;
+    public static void printRightShift() {
+        System.out.println("\nRight Shift");
+        System.out.println(i_bin + " >> " + distance + " = " + shiftRight(i_bin, distance));
+        System.out.println(l_bin + " >> " + distance + " = " + shiftRight(l_bin, distance));
+        System.out.println(s_bin + " >> " + distance + " = " + shiftRight(s_bin, distance));
+        System.out.println(c_bin + " >> " + distance + " = " + shiftRight(c_bin, distance));
+        System.out.println(b_bin + " >> " + distance + " = " + shiftRight(b_bin, distance));
     }
 
-    private static String rotateLeft(String bin, int distance) {
-        distance %= bin.length();
-        String left = bin.substring(0, distance);
-        String right = bin.substring(distance);
-        // System.out.println(Long.parseLong(right+left, 2)); //base 10 representation
-
-        return right + left;
+    public static void printLeftRotate() {
+        System.out.println("\nRotate Left");
+        System.out.println("L_Rotate-" + distance + " " + i_bin + " = " + rotateLeft(i_bin, distance));
+        System.out.println("L_Rotate-" + distance + " " + l_bin + " = " + rotateLeft(l_bin, distance));
+        System.out.println("L_Rotate-" + distance + " " + s_bin + " = " + rotateLeft(s_bin, distance));
+        System.out.println("L_Rotate-" + distance + " " + c_bin + " = " + rotateLeft(c_bin, distance));
+        System.out.println("L_Rotate-" + distance + " " + b_bin + " = " + rotateLeft(b_bin, distance));
     }
 
-    private static String rotateRight(String bin, int distance) {
-        distance %= bin.length();
-        String left = bin.substring(0, bin.length() - distance);
-        String right = bin.substring(bin.length() - distance);
-        // System.out.println(Long.parseLong(right+left, 2)); //base 10 representation
-
-        return right + left;
+    public static void printRightRotate() {
+        System.out.println("\nRotate Right");
+        System.out.println("R_Rotate-" + distance + " " + i_bin + " = " + rotateRight(i_bin, distance));
+        System.out.println("R_Rotate-" + distance + " " + l_bin + " = " + rotateRight(l_bin, distance));
+        System.out.println("R_Rotate-" + distance + " " + s_bin + " = " + rotateRight(s_bin, distance));
+        System.out.println("R_Rotate-" + distance + " " + c_bin + " = " + rotateRight(c_bin, distance));
+        System.out.println("R_Rotate-" + distance + " " + b_bin + " = " + rotateRight(b_bin, distance));
     }
 
-    private static String choice(String bin1, String bin2, String bin3) {
-        Long long1 = Long.parseLong(bin1, 2);
-        Long long2 = Long.parseLong(bin2, 2);
-        Long long3 = Long.parseLong(bin3, 2);
-        Long sum = (long1 & long2) ^ (~long1 & long3);
+    /**** End support methods for main printing****/
 
-        String result = Long.toBinaryString(sum);
-        while(result.length() < 32)
-            result = "0" + result;
-
-        // System.out.println(result);
-
-        return result;
-    }
-
-    private static String majority(String bin1, String bin2, String bin3) {
-        Long long1 = Long.parseLong(bin1, 2);
-        Long long2 = Long.parseLong(bin2, 2);
-        Long long3 = Long.parseLong(bin3, 2);
-        Long sum = (long1 & long2) ^ (long1 & long3) ^ (long2 & long3);
-
-        String result = Long.toBinaryString(sum);
-        while(result.length() < 32)
-            result = "0" + result;
-
-        // System.out.println(result);
-
-        return result;
-    }
-
-    public static void testing() {
-         //testing out shift methods
-         System.out.println(shiftLeft("00000000000000000000000000000101", 2)); //Expected: 00000000000000000000000000010100 (20)
-         System.out.println(shiftRight("00000000000000000000000001010000", 2)); //Expected: 00000000000000000000000000010100 (20)
- 
-         //testing out cirlce methods 
-         System.out.println(rotateLeft("10000000000000000000000000000101", 33)); //Expected: 00000000000000000000000000001011 (11)
-         System.out.println(rotateRight("10000000000000000000000000000101", 33)); //Expected: 11000000000000000000000000000010 (3221225474)
- 
-         // for(int i = 0; i < 32; i++) {
-         //     System.out.println(rotateRight("10000000000000000000000000000101", i)); 
-         // }
- 
-         // System.out.println(Long.MAX_VALUE);
-         // System.out.println(5>>2); //should be 1
-    }
-
-    public static void main(String[] args) throws Exception {
-        testing();
+    public static void main(String[] args) {        
+        printVars();
+        printLeftShift();
+        printRightShift();
+        printLeftRotate();
+        printRightRotate();
     }
 }
