@@ -336,6 +336,15 @@ public class SHA256 {
             String g = H[6];
             String h = H[7];
 
+            // System.out.println(a);
+            // System.out.println(b);
+            // System.out.println(c);
+            // System.out.println(d);
+            // System.out.println(e);
+            // System.out.println(f);
+            // System.out.println(g);
+            // System.out.println(h);
+
             /* Compression Loop */
             for(int i = 0; i < 64; i++) {
                 //temp1 = h + SIGMA1(e) + choice(e, f, g) + k[i] + w[i]
@@ -363,7 +372,20 @@ public class SHA256 {
                 c = b;
                 b = a;
                 a = add(temp1, temp2);
+
+                // if(i==0) {
+                //     System.out.println("a " + a);
+                //     System.out.println("b " + b);
+                //     System.out.println("c " + c);
+                //     System.out.println("d " + d);
+                //     System.out.println("e " + e);
+                //     System.out.println("f " + f);
+                //     System.out.println("g " + g);
+                //     System.out.println("h " + h);
+                // }
             }
+
+            // System.out.println(b);
 
             H[0] = add(H[0], a);
             H[1] = add(H[1], b);

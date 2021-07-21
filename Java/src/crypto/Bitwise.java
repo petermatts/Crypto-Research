@@ -9,7 +9,7 @@ public class Bitwise {
     static final int i_bin = 2;
     static final long l_bin = 987654320;
     static final short s_bin = 5;
-    static final char c_bin = 'M';
+    static final char c_bin = 'h';
     static final byte b_bin = 7;
     static final int distance = 1;
 
@@ -128,10 +128,10 @@ public class Bitwise {
     /**** End support methods for main printing****/
 
     public static void main(String[] args) {        
-        printVars();
-        printLeftShift();
-        printRightShift();
-        printLeftRotate();
+        // printVars();
+        // printLeftShift();
+        // printRightShift();
+        // printLeftRotate();
         printRightRotate();
     }
 }
