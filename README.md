@@ -19,6 +19,12 @@ This folder contains my work with ERC20 Token design and my learning of Eutheriu
 
 Within this folder there are 2 project folders, a default truffle example project example `MetaCoin` and my own project that I have been creating `PyramidCoin` with reference to the solidity docs and `MetaCoin`.
 
+## Slideshow
+
+I made a breif google slides that aims to explain the basis of how crypto currency works.
+
+[Click here for slides](https://docs.google.com/presentation/d/1A-kybBkG2lw1iO6qyywTAImklQ_yI9XctO-q7yy05p0/edit?usp=sharing)
+
 ## About
 
 This repository contains the programming and technical parts of my personal/self-assigneed research project into cyrptography and cryptocurrenceis.
